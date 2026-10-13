@@ -43,6 +43,13 @@
 .restart-button:hover{background:#f7e8d6;transform:translateY(-1px)}
 .phone-screen .needs-title{margin-bottom:19px}
 .phone-screen .need{margin-top:15px}
+
+/* Keep the phone aligned with the gameplay frame while controls sit below it. */
+.game-layout{align-items:stretch}
+.side-panel{display:flex;flex-direction:column;min-width:0}
+.phone-shell{display:flex;flex:1;flex-direction:column;min-height:0}
+.phone-screen{flex:1;min-height:0}
+@media(min-width:681px){.game-layout{grid-template-columns:minmax(0,1fr) minmax(176px,24%)}}
 .phone-screen .need>div:first-child{font-size:11px}
 .phone-screen .meter{height:8px}
 .phone-screen .discover-card>small{font-size:8px}
@@ -162,3 +169,43 @@
 .map-zoom-controls button:hover:not(:disabled){background:#fff;color:#234b58}
 .map-zoom-controls button:disabled{opacity:.5;cursor:default}
 .map-zoom-controls button:focus-visible{outline:2px solid #b4624f;outline-offset:1px}
+
+/* Scale the interface across phones, tablets, and larger displays. */
+#app{max-width:1440px}
+.brand b{font-size:clamp(11px,.95vw,14px)}
+.brand small{font-size:clamp(8px,.65vw,10px)}
+.trip,.clock{font-size:clamp(9px,.72vw,11px)}
+.frame-label{font-size:clamp(9px,.75vw,11px)}
+.world-footer #activity{font-size:clamp(11px,.9vw,14px)}
+.keyboard-help,.or,.help-text{font-size:clamp(10px,.8vw,12px)}
+.keycap{font-size:clamp(10px,.8vw,12px);min-width:24px;height:24px}
+.interact-button,.station-button,.restart-button{font-size:clamp(11px,.85vw,13px)}
+.phone-status{font-size:clamp(8px,.68vw,10px)}
+.phone-heading small,.info-tab span,.auto-depart-row small{font-size:clamp(8px,.65vw,10px)}
+.phone-heading b{font-size:clamp(15px,1.1vw,18px)}
+.info-tab{font-size:clamp(15px,1.15vw,19px)}
+.phone-screen .card-title h1,.order-menu h2{font-size:clamp(16px,1.15vw,19px)}
+.phone-screen .station-line b{font-size:clamp(12px,.9vw,15px)}
+.phone-screen .need>div:first-child,.phone-screen .discover-card p{font-size:clamp(12px,.9vw,15px)}
+.phone-screen .card-title small,.phone-screen .needs-title small,.phone-screen .discover-card>small,
+.map-heading small,.map-live,.map-route-status small,.map-progress,.gallery-heading small,.gallery-heading>span{font-size:clamp(8px,.62vw,10px)}
+.map-heading h2,.gallery-heading h2{font-size:clamp(15px,1.05vw,18px)}
+.map-route-status b{font-size:clamp(10px,.75vw,12px)}
+.order-back,.menu-item b,.take-photo,.gallery-link{font-size:clamp(11px,.8vw,13px)}
+.menu-group>b,.order-menu>small{font-size:clamp(9px,.65vw,11px)}
+.menu-item small,.camera-caption,.gallery-empty{font-size:clamp(10px,.72vw,12px)}
+.camera-stamp,.saved-photo-footer small,.delete-photo{font-size:clamp(8px,.6vw,10px)}
+.phone-screen{overflow-y:auto}
+@media(max-width:680px){
+  #app{padding-right:12px;padding-left:12px}
+  .phone-heading b{font-size:17px}
+  .phone-status,.phone-heading small,.info-tab span{font-size:9px}
+  .phone-screen .card-title small,.phone-screen .needs-title small,.phone-screen .discover-card>small,
+  .map-heading small,.map-live,.map-route-status small,.map-progress,.gallery-heading small,.gallery-heading>span{font-size:9px}
+  .phone-screen .card-title h1,.order-menu h2{font-size:17px}
+  .phone-screen .need>div:first-child,.phone-screen .discover-card p,.map-route-status b{font-size:13px}
+  .menu-item b,.order-back,.take-photo,.gallery-link{font-size:12px}
+  .menu-item small,.camera-caption,.gallery-empty{font-size:11px}
+  .camera-stamp,.saved-photo-footer small,.delete-photo{font-size:9px}
+  .touch-pad button{width:32px;height:32px;font-size:13px}
+}
