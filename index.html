@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#315849" />
+    <title>Thống Nhất Express — The long way home</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand"><span class="logo">✳</span><div><b>THỐNG NHẤT EXPRESS</b><small>THE LONG WAY HOME</small></div></div>
+        <div class="trip"><span>HÀ NỘI</span><i>━━━━━━ 🚆 ━━━━━━</i><span>SÀI GÒN</span></div>
+        <div class="clock"><span class="live"></span><span id="clock">DAY 1 · 06:00</span></div>
+      </header>
+      <main class="game-layout">
+        <section class="play-column">
+          <div class="world-frame">
+            <div class="frame-label" id="train-type-label">SE 1 · BLUE SLEEPER TRAIN</div>
+            <canvas id="world" width="768" height="512" aria-label="Side-view pixel art train travelling past a Vietnamese mountain landscape. Use WASD or arrow keys to walk and E to interact."></canvas>
+            <div class="world-footer"><span id="activity">The train is rolling south. Take a look around!</span></div>
+          </div>
+        </section>
+        <aside class="side-panel" aria-label="Trip information">
+          <div class="phone-shell">
+            <div class="phone-speaker" aria-hidden="true"></div>
+            <div class="phone-screen">
+              <div class="phone-status"><span>THỐNG NHẤT</span><span>● ● ● &nbsp; 100%</span></div>
+              <div class="phone-heading"><div><small>ON BOARD · SE 1</small><b>Travel companion</b></div><button type="button" class="camera-launch" id="open-camera" aria-label="Open phone camera"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h3l1.5-2h7l1.5 2h3A1.5 1.5 0 0 1 21.5 9v9a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 18V9A1.5 1.5 0 0 1 4 7.5Z"/><circle cx="12" cy="13" r="3.5"/><path d="M18 10h.01"/></svg></button></div>
+              <nav class="info-tabs" aria-label="Choose information">
+                <button type="button" class="info-tab active" data-info="track" aria-selected="true">⌖<span>Track</span></button>
+                <button type="button" class="info-tab" data-info="needs" aria-selected="false">✿<span>Needs</span></button>
+                <button type="button" class="info-tab" data-info="explore" aria-selected="false">⌂<span>Explore</span></button>
+                <button type="button" class="info-tab" data-info="gallery" aria-selected="false">▧<span>Gallery</span></button>
+              </nav>
+              <section class="order-menu" aria-label="Cafeteria menu">
+                <button type="button" class="order-back" id="order-back">← Back to phone</button>
+                <small>CAFETERIA · SE 1</small>
+                <h2>What would you like?</h2>
+                <div class="menu-group"><b>Food</b>
+                  <button type="button" class="menu-item" data-order="food" data-name="phở bò" data-restore="32"><span>🍜</span><span><b>Phở bò</b><small>Warm noodle soup · +32 appetite</small></span><i>›</i></button>
+                  <button type="button" class="menu-item" data-order="food" data-name="bánh mì" data-restore="24"><span>🥖</span><span><b>Bánh mì</b><small>Toasted sandwich · +24 appetite</small></span><i>›</i></button>
+                </div>
+                <div class="menu-group"><b>Drinks</b>
+                  <button type="button" class="menu-item" data-order="drink" data-name="trà chanh" data-restore="30"><span>🍋</span><span><b>Trà chanh</b><small>Lime tea · +30 thirst</small></span><i>›</i></button>
+                  <button type="button" class="menu-item" data-order="drink" data-name="cà phê sữa" data-restore="22" data-energy="8"><span>☕</span><span><b>Cà phê sữa</b><small>Vietnamese coffee · +22 thirst</small></span><i>›</i></button>
+                </div>
+              </section>
+              <section class="sight-camera" aria-label="Train window camera">
+                <button type="button" class="order-back" id="camera-back">← Back to phone</button>
+                <small>WINDOW CAMERA · SE 1</small>
+                <h2>Phone camera</h2>
+                <div class="camera-preview"><img id="sight-photo" alt="Mountain scenery passing outside the train window"><span class="camera-reticle" aria-hidden="true"></span><span class="camera-stamp">HÀ NỘI → SÀI GÒN</span></div>
+                <p class="camera-caption" id="camera-caption">A view from your train window</p>
+                <button type="button" class="take-photo" id="take-photo">◎ &nbsp; Take photo</button>
+                <button type="button" class="gallery-link" id="open-gallery">View photo gallery</button>
+              </section>
+          <section class="map-card track-card info-panel active" data-info-panel="track" aria-label="Journey and live train tracking">
+            <div class="map-heading"><div><small>LIVE TRAIN TRACKING · SE 1</small><h2>North to South</h2></div><span class="map-live"><i></i> LIVE</span></div>
+            <div class="route-map">
+              <div class="map-zoom-layer">
+              <img src="/assets/phone/map.png" alt="Map of Vietnam's railway lines from Hà Nội to Sài Gòn">
+              <svg viewBox="0 0 1489 1056" preserveAspectRatio="none" aria-hidden="true">
+                <g class="map-stations">
+                  <circle cx="572" cy="236" r="9"/><circle cx="584" cy="307" r="6.75"/><circle cx="588" cy="401" r="6.75"/>
+                  <circle cx="694" cy="484" r="6.75"/><circle cx="718" cy="506" r="6.75"/><circle cx="760" cy="530" r="6.75"/>
+                  <circle cx="884" cy="767" r="6.75"/><circle cx="717" cy="840" r="6.75"/><circle cx="669" cy="837" r="9"/>
+                </g>
+                <circle id="train-map-marker" class="train-map-marker" cx="572" cy="236" r="5.175"/>
+                <circle id="train-map-center" class="train-map-center" cx="572" cy="236" r="2.25"/>
+              </svg>
+              </div>
+              <div class="map-zoom-controls" role="group" aria-label="Map zoom controls">
+                <button type="button" id="map-zoom-in" aria-label="Zoom in" title="Zoom in">+</button>
+                <button type="button" id="map-zoom-out" aria-label="Zoom out" title="Zoom out" disabled>−</button>
+                <button type="button" id="map-zoom-reset" aria-label="Reset map zoom" title="Reset zoom" disabled>↺</button>
+              </div>
+              <span class="map-north" aria-hidden="true">N</span>
+            </div>
+            <div class="map-route-status"><div><small>NOW NEAR</small><b id="map-current">Hà Nội</b></div><span class="map-route-arrow">↓</span><div><small>NEXT STOP</small><b id="map-next">Ninh Bình</b></div></div>
+            <div class="map-progress"><span id="map-km">0 km</span><div class="route-bar"><span id="map-progress"></span></div><span><b id="stop-count">1 / 9</b> · 1,726 km</span></div>
+            <div class="journey-actions">
+              <button class="station-button" id="advance" type="button" title="Depart station" aria-label="Depart station"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="icon-fill" d="M9 6.8c0-.8.9-1.3 1.6-.9l8.1 5.1a1.2 1.2 0 0 1 0 2l-8.1 5.1c-.7.4-1.6-.1-1.6-.9V6.8Z"/><path d="M5 5v14"/></svg></button>
+              <button class="auto-depart-row" id="auto-depart" type="button" role="switch" aria-checked="false" aria-label="Auto depart after five seconds" title="Toggle automatic departure after five seconds">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="7.5"/><path d="M12 9v4l2.7 1.8M9 2.8h6M12 2.8V5M18 7l1.5-1.5"/></svg><span class="auto-status-dot" aria-hidden="true"></span><small id="auto-depart-status" class="visually-hidden">OFF</small>
+              </button>
+              <button class="restart-button" id="restart" type="button" title="Restart journey" aria-label="Restart journey"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.8 8a8 8 0 1 1-.6 5"/><path d="M4.5 3.8V8h4.2"/></svg></button>
+            </div>
+          </section>
+          <section class="needs-card info-panel" data-info-panel="needs">
+            <div class="needs-title"><small>HOW ARE YOU FEELING?</small><span>✿</span></div>
+            <div class="need"><div><span>Energy</span><b id="energy-value">82%</b></div><div class="meter"><i id="energy-bar" class="energy" style="width:82%"></i></div></div>
+            <div class="need"><div><span>Appetite</span><b id="appetite-value">72%</b></div><div class="meter"><i id="appetite-bar" class="appetite" style="width:72%"></i></div></div>
+            <div class="need"><div><span>Thirst</span><b id="thirst-value">64%</b></div><div class="meter"><i id="thirst-bar" class="thirst" style="width:64%"></i></div></div>
+          </section>
+          <section class="discover-card info-panel" data-info-panel="explore"><small>AROUND YOUR CARRIAGE</small><p>Find your bunk, peek out the window, or grab a bite in the cafeteria.</p><div class="discover-tags"><span>🛏 SLEEPER</span><span>🍜 CAFÉ</span><span>🚻 TOILET</span></div></section>
+          <section class="gallery-card info-panel" data-info-panel="gallery" aria-label="Saved photos">
+            <div class="gallery-heading"><div><small>YOUR TRAVEL MEMORIES</small><h2>Photo gallery</h2></div><span id="gallery-count">0 photos</span></div>
+            <p class="gallery-empty" id="gallery-empty">Your photos will appear here. Look out a train window and take a picture.</p>
+            <div class="gallery-list" id="photo-gallery"></div>
+          </section>
+            </div>
+            <div class="phone-home" aria-hidden="true"><span></span></div>
+          </div>
+          <div class="controls-row">
+            <div class="keyboard-help">
+              <div class="movement-instructions"><span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">D</span><span class="or">or</span><span class="keycap wide">← ↑ ↓ →</span><span class="help-text">to walk</span></div>
+              <div class="interaction-instruction"><span class="keycap interact-key">E</span><span class="help-text">to interact</span></div>
+            </div>
+            <div class="touch-pad"><button data-key="arrowup" aria-label="Move up">▲</button><div><button data-key="arrowleft" aria-label="Move left">◀</button><button data-key="arrowdown" aria-label="Move down">▼</button><button data-key="arrowright" aria-label="Move right">▶</button></div></div>
+          </div>
+        </aside>
+      </main>
+      <div class="toast" id="toast" role="status"></div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
